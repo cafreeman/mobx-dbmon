@@ -82,6 +82,7 @@ switch (process.env.npm_lifecycle_event) {
   default:
     config = merge(
       common,
+      parts.dashboard(),
       {
         devtool: 'eval-source-map'
       },
@@ -92,6 +93,7 @@ switch (process.env.npm_lifecycle_event) {
         port: process.env.PORT
       })
     );
+    break;
 }
 
 module.exports = config;

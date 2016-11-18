@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 exports.setFreeVariable = function(key, value) {
   const env = {};
@@ -14,17 +15,11 @@ exports.setFreeVariable = function(key, value) {
   };
 }
 
-exports.typescript = function(paths) {
+exports.dashboard = function() {
   return {
-    module: {
-      rules: [
-        {
-          test: /\.tsx?$/,
-          include: paths,
-          loader: 'awesome-typescript-loader'
-        }
-      ]
-    }
+    plugins: [
+      new DashboardPlugin()
+    ]
   };
 }
 
@@ -46,6 +41,20 @@ exports.devServer = function(options) {
         multiStep:true
       })
     ]
+  };
+}
+
+exports.typescript = function(paths) {
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          include: paths,
+          loader: 'awesome-typescript-loader'
+        }
+      ]
+    }
   };
 }
 
