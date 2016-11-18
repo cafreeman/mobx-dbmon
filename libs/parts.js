@@ -26,9 +26,11 @@ exports.dashboard = function() {
 exports.devServer = function(options) {
   return {
     devServer: {
-      historyApiFallback: true,
-      hot: true,
-      inline: true,
+      // historyApiFallback: true,
+      // hot: true,
+      // inline: true,
+
+      contentBase: './dist',
 
       stats: 'errors-only',
 
@@ -36,11 +38,11 @@ exports.devServer = function(options) {
       port: options.port
     },
 
-    plugins: [
-      new webpack.HotModuleReplacementPlugin({
-        multiStep:true
-      })
-    ]
+    // plugins: [
+    //   new webpack.HotModuleReplacementPlugin({
+    //     multiStep:true
+    //   })
+    // ]
   };
 }
 
