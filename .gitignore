@@ -3,3 +3,4 @@ typings
 dist
 
 .awcache
+.DS_Store
