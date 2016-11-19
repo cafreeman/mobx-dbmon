@@ -1,7 +1,16 @@
 import ExponentialMovingAverage from './ema';
 import Database from './database';
 
-const ROWS = 100;
+const ROWS = 50;
+// export let mutationsValue = 0.5;
+
+// export function mutations(value?: number) {
+//   if (value) {
+//     mutationsValue = value;
+//     return mutationsValue;
+//   }
+//   return mutationsValue;
+// }
 
 export function getData() {
   let data = {
@@ -26,12 +35,6 @@ export function getData() {
 
     for (let i = 0; i < r ; i++) {
       let q = {
-        canvas_action: null,
-        canvas_context_id: null,
-        canvas_controller: null,
-        canvas_hostname: null,
-        canvas_job_tag: null,
-        canvas_pid: null,
         elapsed: Math.random() * 15,
         query: "SELECT blah FROM something",
         waiting: Math.random() < 0.5
@@ -106,7 +109,7 @@ export function lpad(str, padding, toLength): string {
 
 export function formatElapsed(value): string {
   let str = parseFloat(value).toFixed(2);
-  if (value < 60) {
+  if (value > 60) {
     let minutes = Math.floor(value / 60);
     let comps = (value % 60).toFixed(2).split('.');
     let seconds = lpad(comps[0], '0', 2);
