@@ -12,5 +12,5 @@ To run this demo:
 - open `dist/index.html` (preferably in an incognito window so your extensions don't mess with things).
 
 
-You should see something like this:
+You should see something like this: ![dbmon-screenshot](https://github.com/cafreeman/mobx-dbmon/blob/master/libs/dbmon-screenshot.png)
 
