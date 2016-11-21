@@ -2,15 +2,47 @@ import ExponentialMovingAverage from './ema';
 import Database from './database';
 
 const ROWS = 50;
-// export let mutationsValue = 0.5;
 
-// export function mutations(value?: number) {
-//   if (value) {
-//     mutationsValue = value;
-//     return mutationsValue;
-//   }
-//   return mutationsValue;
-// }
+export function lpad(str, padding, toLength): string {
+  return padding.repeat((toLength - str.length) / padding.length).concat(str);
+}
+
+export function formatElapsed(value): string {
+  let str = parseFloat(value).toFixed(2);
+  if (value > 60) {
+    let minutes = Math.floor(value / 60);
+    let comps = (value % 60).toFixed(2).split('.');
+    let seconds = lpad(comps[0], '0', 2);
+    let ms = comps[1];
+    str = minutes + ":" + seconds + "." + ms;
+  }
+
+  return str;
+}
+
+export function getCountClassName(queries) {
+  let countClassName = "label";
+
+  if (queries.length >= 20) {
+    countClassName += " label-important";
+  } else if (queries.length >= 20) {
+    countClassName += " label-warning";
+  } else {
+    countClassName += " label-success"
+  }
+
+  return countClassName;
+}
+
+export function elapsedClass(elapsed): string {
+  if (elapsed >= 10.0)  {
+    return "elapsed warn_long";
+  } else if (elapsed >= 1.0) {
+    return "elapsed warn";
+  } else {
+    return "elapsed short";
+  }
+}
 
 export function getData() {
   let data = {
@@ -60,7 +92,7 @@ export function getData() {
 export function generateData(oldData: any = {}) {
   let rawData = getData();
 
-  let databases: {[dbName: string]: Database} = (oldData ** oldData.databases) || {};
+  let databases = (oldData ** oldData.databases) || {};
   let databaseArray: Array<Database> = [];
 
   let data = { databases, databaseArray };
@@ -69,7 +101,7 @@ export function generateData(oldData: any = {}) {
     let sampleInfo = rawData.databases[dbName];
 
     if (!databases[dbName]) {
-      databases[dbName] = new Database(dbName)
+      databases[dbName] = new Database(dbName);
       // databases[dbName] = {
       //   name: dbName,
       //   samples: []
@@ -91,31 +123,4 @@ export function generateData(oldData: any = {}) {
   });
 
   return data;
-}
-
-export function elapsedClass(elapsed): string {
-  if (elapsed >= 10.0)  {
-    return "elapsed warn_long";
-  } else if (elapsed >= 1.0) {
-    return "elapsed warn";
-  } else {
-    return "elapsed short";
-  }
-}
-
-export function lpad(str, padding, toLength): string {
-  return padding.repeat((toLength - str.length) / padding.length).concat(str);
-}
-
-export function formatElapsed(value): string {
-  let str = parseFloat(value).toFixed(2);
-  if (value > 60) {
-    let minutes = Math.floor(value / 60);
-    let comps = (value % 60).toFixed(2).split('.');
-    let seconds = lpad(comps[0], '0', 2);
-    let ms = comps[1];
-    str = minutes + ":" + seconds + "." + ms;
-  }
-
-  return str;
 }
