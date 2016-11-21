@@ -1,5 +1,6 @@
 import ExponentialMovingAverage from './ema';
 import Database from './database';
+import * as uuid from 'uuid';
 
 const ROWS = 50;
 
@@ -67,6 +68,7 @@ export function getData() {
 
     for (let i = 0; i < r ; i++) {
       let q = {
+        key: uuid.v4(),
         elapsed: Math.random() * 15,
         query: "SELECT blah FROM something",
         waiting: Math.random() < 0.5
@@ -101,11 +103,11 @@ export function generateData(oldData: any = {}) {
     let sampleInfo = rawData.databases[dbName];
 
     if (!databases[dbName]) {
-      databases[dbName] = new Database(dbName);
-      // databases[dbName] = {
-      //   name: dbName,
-      //   samples: []
-      // };
+      // databases[dbName] = new Database(dbName);
+      databases[dbName] = {
+        name: dbName,
+        samples: []
+      };
     }
 
     let samples = databases[dbName].samples;
