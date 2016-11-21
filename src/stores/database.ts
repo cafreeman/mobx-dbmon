@@ -1,5 +1,5 @@
 import { observable, computed, action } from 'mobx';
-import { elapsedClass, formatElapsed } from './dbmon-utils';
+import { elapsedClass, formatElapsed, getCountClassName } from './dbmon-utils';
 
 export default class Database {
   @observable public name: string;
@@ -35,16 +35,7 @@ export default class Database {
 
   @computed get countClassName() {
     let queries = this.queries;
-    let countClassName = "label";
-
-    if (queries.length >= 20) {
-      countClassName += " label-import";
-    } else if (queries.length >= 10) {
-      countClassName += " label-warning";
-    } else {
-      countClassName += " label-success";
-    }
-
-    return countClassName;
+    
+    return getCountClassName(queries);
   }
 }
