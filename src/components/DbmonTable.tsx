@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import DbmonTableRow from './DbmonTableRow';
+import DbmonDatabase from './DbmonDatabase';
 
 const DbmonTable = ({ store }) => (
   <table className="table table-striped latest-data">
     <tbody>
     {
       store.model.databaseArray.map(db => (
-        <DbmonTableRow key={db.name} db={db} />
+        <DbmonDatabase key={db.name} db={db} />
       ))
     }
     </tbody>
