@@ -4,7 +4,7 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "compile": "webpack",
+    "compile": "webpack && echo \"mobx-dbmon.surge.sh\" > CNAME",
     "benchmark": "npm run compile && open dist/index.html",
     "build": "webpack",
     "start": "webpack-dashboard -- webpack-dev-server"
@@ -31,6 +31,7 @@
     "bootstrap": "^3.3.7",
     "mobx": "^2.6.2",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "uuid": "^3.0.0"
   }
 }

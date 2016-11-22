@@ -4,6 +4,8 @@ This app is intended to serve as a benchmark for React + Mobx using the dbmon be
 
 Prior work on dbmon can be found [here](https://github.com/mathieuancelin/js-repaint-perfs).
 
+Live demo can be found [here](http://mobx-dbmon.surge.sh/)
+
 To run this demo:
 
 - clone this repo
