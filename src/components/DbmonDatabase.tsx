@@ -40,7 +40,7 @@ export default class DbmonDatabase extends React.Component<any, any> {
           {this.props.db.name}
         </td>
         <td className="query-count">
-          <span className={this.countClassName}>
+          <span className={this.countClassName()}>
             {this.queries().length}
           </span>
         </td>
