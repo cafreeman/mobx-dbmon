@@ -4,7 +4,7 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "compile": "webpack",
+    "compile": "webpack && echo \"mobx-dbmon.surge.sh\" > CNAME",
     "benchmark": "npm run compile && open dist/index.html",
     "build": "webpack",
     "start": "webpack-dashboard -- webpack-dev-server"
