@@ -17,7 +17,7 @@ export default class Dbmon {
 
   @action toggle() {
     if (this.playing) {
-      clearTimeout(clear);
+      cancelAnimationFrame(clear);
       clear = null;
       this.playing = false;
     } else {
@@ -29,6 +29,6 @@ export default class Dbmon {
   loadSamples = () => {
     this.model = generateData(this.model.databaseArray);
     monitoring.renderRate.ping();
-    clear = setTimeout(this.loadSamples, 0);
+    clear = requestAnimationFrame(this.loadSamples.bind(this));
   }
 }
